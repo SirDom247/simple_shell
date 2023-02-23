@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 /**
  * _strcpy - copies a string
  * @dest: the destination
@@ -11,7 +10,6 @@
 char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
-
 
 	if (dest == src || src == 0)
 		return (dest);
@@ -35,23 +33,21 @@ char *_strdup(const char *str)
 	int length = 0;
 	char *ret;
 
-
 	if (str == NULL)
-	return (NULL);
+		return (NULL);
 	while (*str++)
 		length++;
 	ret = malloc(sizeof(char) * (length + 1));
 	if (!ret)
-	return (NULL);
+		return (NULL);
 	for (length++; length--;)
 		ret[length] = *--str;
 	return (ret);
 }
 
-
 /**
- * _puts - prints an input string
- * @str: the string to be printed
+ *_puts - prints an input string
+ *@str: the string to be printed
  *
  * Return: Nothing
  */
@@ -59,16 +55,14 @@ void _puts(char *str)
 {
 	int i = 0;
 
-
 	if (!str)
-	return;
+		return;
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
 		i++;
 	}
 }
-
 
 /**
  * _putchar - writes the character c to stdout
@@ -81,7 +75,6 @@ int _putchar(char c)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
-
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
