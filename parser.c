@@ -10,7 +10,7 @@
  */
 int is_cmd(info_t *info, char *path)
 {
-	struct stat st
+	struct stat st;
 
 
 	(void)info;
@@ -91,3 +91,4 @@ char *find_path(info_t *info, char *pathstr, char *cmd)
 	}
 	return (NULL);
 }
+
