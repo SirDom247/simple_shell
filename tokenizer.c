@@ -89,7 +89,7 @@ char **strtow2(char *str, char d)
 		{
 			for (k = 0; k < j; k++)
 				free(s[k]);
-				free(s);
+			free(s);
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
