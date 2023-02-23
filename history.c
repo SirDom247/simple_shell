@@ -36,16 +36,30 @@ int write_history(info_t *info)
 	char *filename = get_history_file(info);
 	list_t *node = NULL;
 
+<<<<<<< HEAD
 	if (!filename)
 		return (-1);
 
+=======
+
+	if (!filename)
+		return (-1);
+
+
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(filename);
 	if (fd == -1)
 		return (-1);
+<<<<<<< HEAD
 	for (node = info->history; node; node = node->next)
 	{
 		_putsfd(node->str, fd);
+=======
+	for (node = (*info).history; node; node = (*node).next)
+	{
+		_putsfd((*node).str, fd);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 		_putfd('\n', fd);
 	}
 	_putfd(BUF_FLUSH, fd);
@@ -95,11 +109,19 @@ int read_history(info_t *info)
 	if (last != i)
 		build_history_list(info, buf + last, linecount++);
 	free(buf);
+<<<<<<< HEAD
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
 		delete_node_at_index(&(info->history), 0);
 	renumber_history(info);
 	return (info->histcount);
+=======
+	(*info).histcount = linecount;
+	while ((*info).histcount-- >= HIST_MAX)
+		delete_node_at_index(&((*info).history), 0);
+	renumber_history(info);
+	return ((*info).histcount);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 }
 
 /**
@@ -113,6 +135,7 @@ int read_history(info_t *info)
 int build_history_list(info_t *info, char *buf, int linecount)
 {
 	list_t *node = NULL;
+<<<<<<< HEAD
 
 	if (info->history)
 		node = info->history;
@@ -120,6 +143,17 @@ int build_history_list(info_t *info, char *buf, int linecount)
 
 	if (!info->history)
 		info->history = node;
+=======
+
+
+	if ((*info).history)
+		node = (*info).history;
+	add_node_end(&node, buf, linecount);
+
+
+	if (!(*info).history)
+		(*info).history = node;
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	return (0);
 }
 
@@ -131,6 +165,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
  */
 int renumber_history(info_t *info)
 {
+<<<<<<< HEAD
 	list_t *node = info->history;
 	int i = 0;
 
@@ -140,4 +175,16 @@ int renumber_history(info_t *info)
 		node = node->next;
 	}
 	return (info->histcount = i);
+=======
+	list_t *node = (*info).history;
+	int i = 0;
+
+
+	while (node)
+	{
+		(*node).num = i++;
+		node = (*node).next;
+	}
+	return ((*info).histcount = i);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 }

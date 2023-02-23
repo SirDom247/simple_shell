@@ -8,6 +8,7 @@
  */
 char **get_environ(info_t *info)
 {
+<<<<<<< HEAD
 	if (!info->environ || info->env_changed)
 	{
 		info->environ = list_to_strings(info->env);
@@ -15,9 +16,20 @@ char **get_environ(info_t *info)
 	}
 
 	return (info->environ);
+=======
+	if (!(*info).environ || (*info).env_changed)
+	{
+		(*info).environ = list_to_strings((*info).env);
+		(*info).env_changed = 0;
+	}
+
+
+	return ((*info).environ);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 }
 
 /**
+<<<<<<< HEAD
  * _unsetenv - Remove an environment variable
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
@@ -29,12 +41,29 @@ int _unsetenv(info_t *info, char *var)
 	list_t *node = info->env;
 	size_t i = 0;
 	char *p;
+=======
+ * _unsetenv - ....
+ * @info: ....
+ * @var: .....
+ * Return: ....
+ */
+int _unsetenv(info_t *info, char *var)
+{
+	list_t *node = (*info).env;
+	size_t i = 0;
+	char *p;
+
+
+	if (!node || !var)
+		return (0);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 
 	if (!node || !var)
 		return (0);
 
 	while (node)
 	{
+<<<<<<< HEAD
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
@@ -47,6 +76,20 @@ int _unsetenv(info_t *info, char *var)
 		i++;
 	}
 	return (info->env_changed);
+=======
+		p = starts_with((*node).str, var);
+		if (p && *p == '=')
+		{
+			(*info).env_changed = delete_node_at_index(&((*info).env), i);
+			i = 0;
+			node = (*info).env;
+			continue;
+		}
+		node = (*node).next;
+		i++;
+	}
+	return ((*info).env_changed);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 }
 
 /**
@@ -63,16 +106,25 @@ int _setenv(info_t *info, char *var, char *value)
 	char *buf = NULL;
 	list_t *node;
 	char *p;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 
 	if (!var || !value)
 		return (0);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	buf = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buf)
 		return (1);
 	_strcpy(buf, var);
 	_strcat(buf, "=");
 	_strcat(buf, value);
+<<<<<<< HEAD
 	node = info->env;
 	while (node)
 	{
@@ -89,5 +141,23 @@ int _setenv(info_t *info, char *var, char *value)
 	add_node_end(&(info->env), buf, 0);
 	free(buf);
 	info->env_changed = 1;
+=======
+	node = (*info).env;
+	while (node)
+	{
+		p = starts_with((*node).str, var);
+		if (p && *p == '=')
+		{
+			free((*node).str);
+			(*node).str = buf;
+			(*info).env_changed = 1;
+			return (0);
+		}
+		node = (*node).next;
+	}
+	add_node_end(&((*info).env), buf, 0);
+	free(buf);
+	(*info).env_changed = 1;
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	return (0);
 }

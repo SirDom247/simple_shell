@@ -12,10 +12,16 @@ void _eputs(char *str)
 
 	if (!str)
 		return;
+<<<<<<< HEAD
 	while (str[i] != '\0')
 	{
 		_eputchar(str[i]);
 		i++;
+=======
+	for (i = 0; str[i] != '\0'; i++)
+	{
+	    _eputchar(str[i]);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	}
 }
 
@@ -54,6 +60,10 @@ int _putfd(char c, int fd)
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(fd, buf, i);
@@ -75,6 +85,10 @@ int _putsfd(char *str, int fd)
 {
 	int i = 0;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 	if (!str)
 		return (0);
 	while (*str)
@@ -83,3 +97,35 @@ int _putsfd(char *str, int fd)
 	}
 	return (i);
 }
+<<<<<<< HEAD
+=======
+
+
+/**
+ * _erratoi - ....
+ * @s: ....
+ * Return: ....
+ */
+int _erratoi(char *s)
+{
+	int i = 0;
+	unsigned long int result = 0;
+
+
+	if (*s == '+')
+		s++;
+	for (i = 0;  s[i] != '\0'; i++)
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			result *= 10;
+			result += (s[i] - '0');
+			if (result > INT_MAX)
+				return (-1);
+		}
+		else
+			return (-1);
+	}
+	return (result);
+}
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd

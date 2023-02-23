@@ -6,10 +6,17 @@
  */
 void clear_info(info_t *info)
 {
+<<<<<<< HEAD
 	info->arg = NULL;
 	info->argv = NULL;
 	info->path = NULL;
 	info->argc = 0;
+=======
+	(*info).arg = NULL;
+	(*info).argv = NULL;
+	(*info).path = NULL;
+	(*info).argc = 0;
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 }
 
 /**
@@ -21,12 +28,33 @@ void set_info(info_t *info, char **av)
 {
 	int i = 0;
 
+<<<<<<< HEAD
 	info->fname = av[0];
 	if (info->arg)
 	{
 		info->argv = strtow(info->arg, " \t");
 		if (!info->argv)
 		{
+=======
+	(*info).fname = av[0];
+	if ((*info).arg)
+	{
+		(*info).argv = strtow((*info).arg, " \t");
+		if (!(*info).argv)
+		{
+			(*info).argv = malloc(sizeof(char *) * 2);
+			if ((*info).argv)
+			{
+				(*info).argv[0] = _strdup((*info).arg);
+				(*info).argv[1] = NULL;
+			}
+		}
+		for (i = 0; (*info).argv && (*info).argv[i]; i++)
+		{
+			;
+		}
+		(*info).argc = i;
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
@@ -51,6 +79,7 @@ void set_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
+<<<<<<< HEAD
 	ffree(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
@@ -69,6 +98,26 @@ void free_info(info_t *info, int all)
 		bfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 			close(info->readfd);
+=======
+	ffree((*info).argv);
+	(*info).argv = NULL;
+	(*info).path = NULL;
+	if (all)
+	{
+		if (!(*info).cmd_buf)
+			free((*info).arg);
+		if ((*info).env)
+			free_list(&((*info).env));
+		if ((*info).history)
+			free_list(&((*info).history));
+		if ((*info).alias)
+			free_list(&((*info).alias));
+		ffree((*info).environ);
+			(*info).environ = NULL;
+		bfree((void **)(*info).cmd_buf);
+		if ((*info).readfd > 2)
+			close((*info).readfd);
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
 		_putchar(BUF_FLUSH);
 	}
 }

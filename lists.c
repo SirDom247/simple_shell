@@ -157,4 +157,7 @@ void free_list(list_t **head_ptr)
 	}
 	*head_ptr = NULL;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d54c3c596659b1cf94b72e69019619f0a4f685cd
